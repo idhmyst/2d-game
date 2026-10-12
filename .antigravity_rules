@@ -1,0 +1,4 @@
+- Engine: Phaser 3 + TypeScript.
+- Canvas: 800x600 fixed resolution, centered.
+- Physics: Arcade Physics, gravity Y = 600.
+- Selalu sediakan procedural fallback graphics jika aset gambar di /public/assets belum ada.

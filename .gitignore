@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.log
+*.txt
+*-result.json
+*-diag.json
+verified-movement.json
+update-stacks.json
+debug-state.json
+.DS_Store
