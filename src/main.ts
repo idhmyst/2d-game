@@ -183,10 +183,10 @@ const LEVELS: LevelConfig[] = [
     groundColor: 0x8b4513,
     grassColor: 0x22c55e,
     pipes: [
-      { x: 500, height: 64 },
-      { x: 950, height: 96 },
-      { x: 1600, height: 80 },
-      { x: 2350, height: 110 }
+      { x: 500, height: 44 },
+      { x: 950, height: 60 },
+      { x: 1600, height: 48 },
+      { x: 2350, height: 64 }
     ],
     blocks: [
       { x: 300, y: 440, type: 'question', hasCoin: true },
@@ -194,15 +194,16 @@ const LEVELS: LevelConfig[] = [
       { x: 364, y: 440, type: 'question', hasCoin: true },
       { x: 396, y: 440, type: 'brick' },
       { x: 428, y: 440, type: 'question', hasCoin: true },
-      // Elevated platform blocks
-      { x: 720, y: 380, type: 'brick' },
-      { x: 752, y: 380, type: 'question', hasCoin: true },
-      { x: 784, y: 380, type: 'brick' },
-      // High secret line
-      { x: 1200, y: 320, type: 'question', hasCoin: true },
-      { x: 1232, y: 320, type: 'brick' },
-      { x: 1264, y: 320, type: 'brick' },
-      { x: 1296, y: 320, type: 'question', hasCoin: true },
+      // Elevated platform blocks (easy jump from ground)
+      { x: 720, y: 410, type: 'brick' },
+      { x: 752, y: 410, type: 'question', hasCoin: true },
+      { x: 784, y: 410, type: 'brick' },
+      // Stepping block to reach secret line
+      { x: 1160, y: 430, type: 'brick' },
+      { x: 1200, y: 360, type: 'question', hasCoin: true },
+      { x: 1232, y: 360, type: 'brick' },
+      { x: 1264, y: 360, type: 'brick' },
+      { x: 1296, y: 360, type: 'question', hasCoin: true },
       // Staircase near goal
       { x: 2600, y: 520, type: 'brick' },
       { x: 2632, y: 520, type: 'brick' },
@@ -225,11 +226,11 @@ const LEVELS: LevelConfig[] = [
       { x: 2200, y: 530, patrol: 80 }
     ],
     coins: [
-      { x: 300, y: 400 }, { x: 364, y: 400 }, { x: 428, y: 400 },
-      { x: 500, y: 480 }, { x: 752, y: 340 }, { x: 950, y: 450 },
-      { x: 1232, y: 280 }, { x: 1264, y: 280 }, { x: 1600, y: 460 },
+      { x: 300, y: 395 }, { x: 364, y: 395 }, { x: 428, y: 395 },
+      { x: 500, y: 460 }, { x: 752, y: 365 }, { x: 950, y: 440 },
+      { x: 1232, y: 315 }, { x: 1264, y: 315 }, { x: 1600, y: 455 },
       { x: 1900, y: 520 }, { x: 1950, y: 520 }, { x: 2000, y: 520 },
-      { x: 2350, y: 430 }, { x: 2500, y: 520 }
+      { x: 2350, y: 435 }, { x: 2500, y: 520 }
     ],
     goalX: 2900
   },
@@ -242,23 +243,25 @@ const LEVELS: LevelConfig[] = [
     groundColor: 0x475569,
     grassColor: 0x64748b,
     pipes: [
-      { x: 450, height: 80 },
-      { x: 1100, height: 120 },
-      { x: 1800, height: 90 },
-      { x: 2550, height: 130 }
+      { x: 450, height: 48 },
+      { x: 1100, height: 64 },
+      { x: 1800, height: 52 },
+      { x: 2550, height: 68 }
     ],
     blocks: [
-      { x: 260, y: 420, type: 'question', hasCoin: true },
-      { x: 292, y: 420, type: 'brick' },
-      { x: 650, y: 360, type: 'question', hasCoin: true },
-      { x: 682, y: 360, type: 'brick' },
-      { x: 714, y: 360, type: 'question', hasCoin: true },
-      { x: 1350, y: 330, type: 'brick' },
-      { x: 1382, y: 330, type: 'question', hasCoin: true },
-      { x: 1414, y: 330, type: 'brick' },
-      { x: 2100, y: 390, type: 'brick' },
-      { x: 2132, y: 390, type: 'question', hasCoin: true },
-      { x: 2164, y: 390, type: 'brick' }
+      { x: 260, y: 440, type: 'question', hasCoin: true },
+      { x: 292, y: 440, type: 'brick' },
+      { x: 650, y: 400, type: 'question', hasCoin: true },
+      { x: 682, y: 400, type: 'brick' },
+      { x: 714, y: 400, type: 'question', hasCoin: true },
+      // Stepping block to reach platform
+      { x: 1310, y: 430, type: 'brick' },
+      { x: 1350, y: 365, type: 'brick' },
+      { x: 1382, y: 365, type: 'question', hasCoin: true },
+      { x: 1414, y: 365, type: 'brick' },
+      { x: 2100, y: 410, type: 'brick' },
+      { x: 2132, y: 410, type: 'question', hasCoin: true },
+      { x: 2164, y: 410, type: 'brick' }
     ],
     spikes: [
       { x: 750, y: 568, width: 80 },
@@ -275,9 +278,9 @@ const LEVELS: LevelConfig[] = [
       { x: 2800, y: 530, patrol: 110 }
     ],
     coins: [
-      { x: 260, y: 370 }, { x: 650, y: 310 }, { x: 714, y: 310 },
-      { x: 1100, y: 420 }, { x: 1382, y: 280 }, { x: 1550, y: 520 },
-      { x: 1800, y: 450 }, { x: 2132, y: 340 }, { x: 2450, y: 520 },
+      { x: 260, y: 395 }, { x: 650, y: 355 }, { x: 714, y: 355 },
+      { x: 1100, y: 440 }, { x: 1382, y: 320 }, { x: 1550, y: 520 },
+      { x: 1800, y: 450 }, { x: 2132, y: 365 }, { x: 2450, y: 520 },
       { x: 2700, y: 520 }, { x: 3000, y: 520 }
     ],
     goalX: 3300
@@ -1061,7 +1064,7 @@ class GameScene extends Phaser.Scene {
 
     // 2. Snappy Mario Jump Physics
     if (jumpPressed && onGround) {
-      this.player.setVelocityY(-560);
+      this.player.setVelocityY(-610);
       this.audioMgr.play('jump', { volume: 0.65 });
       if (this.usingHeroSprite) {
         this.player.play('hero_jump', true);
@@ -1069,8 +1072,8 @@ class GameScene extends Phaser.Scene {
     }
 
     // Cut velocity when releasing jump button early (Variable Jump Height)
-    if (!jumpPressed && this.player.body.velocity.y < -120) {
-      this.player.setVelocityY(-120);
+    if (!jumpPressed && this.player.body.velocity.y < -180) {
+      this.player.setVelocityY(-180);
     }
 
     if (!onGround && this.usingHeroSprite) {
@@ -1193,7 +1196,7 @@ const game = new Phaser.Game({
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: { x: 0, y: 1300 },
+      gravity: { x: 0, y: 1180 },
       debug: false
     }
   },
