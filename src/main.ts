@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
   (window as any).__globalInput = globalInput;
 }
 
-// --- UNIFIED FULLSCREEN TOGGLE ---
+// --- UNIFIED FULLSCREEN & AMBIENT BACKDROP TOGGLE ---
 export function toggleGameFullscreen() {
   const elem = document.getElementById('game-wrapper') || document.documentElement;
   if (!document.fullscreenElement) {
@@ -22,6 +22,28 @@ export function toggleGameFullscreen() {
       document.exitFullscreen().catch(() => {});
     }
   }
+}
+
+export function toggleFillScreen() {
+  const wrapper = document.getElementById('game-wrapper');
+  if (wrapper) {
+    wrapper.classList.toggle('fill-screen');
+    const g = (window as any).__PHASER_GAME__;
+    if (g && g.scale) {
+      setTimeout(() => g.scale.refresh(), 50);
+    }
+  }
+}
+
+export function updateAmbientBackdrop(topColor: number, bottomColor?: number) {
+  if (typeof document === 'undefined') return;
+  const wrapper = document.getElementById('game-wrapper');
+  const hexTop = '#' + topColor.toString(16).padStart(6, '0');
+  const hexBottom = bottomColor ? '#' + bottomColor.toString(16).padStart(6, '0') : hexTop;
+  if (wrapper) {
+    wrapper.style.background = `linear-gradient(to bottom, ${hexTop}, ${hexBottom})`;
+  }
+  document.body.style.background = hexTop;
 }
 
 if (typeof window !== 'undefined') {
@@ -40,6 +62,9 @@ if (typeof window !== 'undefined') {
     }
     if (code === 'KeyF' || k === 'f') {
       toggleGameFullscreen();
+    }
+    if (code === 'KeyZ' || k === 'z') {
+      toggleFillScreen();
     }
     if (code === 'KeyR' || k === 'r') {
       const g = (window as any).__PHASER_GAME__;
@@ -382,6 +407,7 @@ class MenuScene extends Phaser.Scene {
 
   create() {
     this.audioMgr = new AudioManager(this);
+    updateAmbientBackdrop(0x0a0f1d, 0x1e1b4b);
 
     // Sembunyikan tombol touch controls saat di layar menu
     const tc = document.getElementById('touch-controls');
@@ -910,6 +936,7 @@ class GameScene extends Phaser.Scene {
     this.audioMgr.play('bgm', { loop: true, volume: 0.4 });
 
     const lvl = LEVELS[this.currentLevelIndex];
+    updateAmbientBackdrop(lvl.skyColorTop, lvl.skyColorBottom);
 
     // Set World Physics Bounds
     this.physics.world.setBounds(0, 0, lvl.worldWidth, 600);
