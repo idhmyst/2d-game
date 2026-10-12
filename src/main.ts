@@ -156,9 +156,13 @@ class AudioManager {
   }
 }
 
-// --- MARIO-STYLE LEVEL DATA ---
+// --- MARIO-STYLE LEVEL DATA DENGAN WAKTU HARI (PAGI, PETANG, MALAM) ---
 interface LevelConfig {
   name: string;
+  timeOfDay: 'pagi' | 'petang' | 'malam';
+  timeLabel: string;
+  timeIcon: string;
+  description: string;
   worldWidth: number;
   skyColorTop: number;
   skyColorBottom: number;
@@ -175,13 +179,17 @@ interface LevelConfig {
 
 const LEVELS: LevelConfig[] = [
   {
-    name: 'WORLD 1-1: GREEN HILLS',
+    name: 'WORLD 1-1: PAGI (BUKIT HIJAU)',
+    timeOfDay: 'pagi',
+    timeLabel: 'PAGI',
+    timeIcon: '☀️',
+    description: 'Matahari pagi cerah & bukit hijau segar',
     worldWidth: 3200,
-    skyColorTop: 0x5c94fc,
-    skyColorBottom: 0xc4e0e5,
-    hillsColor: 0x48bb78,
+    skyColorTop: 0x38bdf8,
+    skyColorBottom: 0xbae6fd,
+    hillsColor: 0x22c55e,
     groundColor: 0x8b4513,
-    grassColor: 0x22c55e,
+    grassColor: 0x4ade80,
     pipes: [
       { x: 500, height: 44 },
       { x: 950, height: 60 },
@@ -235,18 +243,22 @@ const LEVELS: LevelConfig[] = [
     goalX: 2900
   },
   {
-    name: 'WORLD 1-2: SUNSET FORTRESS',
-    worldWidth: 3600,
-    skyColorTop: 0xf97316,
-    skyColorBottom: 0xfef08a,
+    name: 'WORLD 1-2: PETANG (LEMBAH SENJA)',
+    timeOfDay: 'petang',
+    timeLabel: 'PETANG',
+    timeIcon: '🌇',
+    description: 'Langit jingga tembaga & matahari terbenam hangat',
+    worldWidth: 3500,
+    skyColorTop: 0x7c3aed,
+    skyColorBottom: 0xf97316,
     hillsColor: 0x9a3412,
-    groundColor: 0x475569,
-    grassColor: 0x64748b,
+    groundColor: 0x5c2b09,
+    grassColor: 0xca8a04,
     pipes: [
       { x: 450, height: 48 },
-      { x: 1100, height: 64 },
-      { x: 1800, height: 52 },
-      { x: 2550, height: 68 }
+      { x: 1100, height: 62 },
+      { x: 1800, height: 50 },
+      { x: 2550, height: 66 }
     ],
     blocks: [
       { x: 260, y: 440, type: 'question', hasCoin: true },
@@ -283,9 +295,407 @@ const LEVELS: LevelConfig[] = [
       { x: 1800, y: 450 }, { x: 2132, y: 365 }, { x: 2450, y: 520 },
       { x: 2700, y: 520 }, { x: 3000, y: 520 }
     ],
+    goalX: 3200
+  },
+  {
+    name: 'WORLD 1-3: MALAM (PUNCAK BINTANG)',
+    timeOfDay: 'malam',
+    timeLabel: 'MALAM',
+    timeIcon: '🌙',
+    description: 'Malam tenang bertabur bintang & sinar bulan sabit',
+    worldWidth: 3600,
+    skyColorTop: 0x030712,
+    skyColorBottom: 0x1e1b4b,
+    hillsColor: 0x0f172a,
+    groundColor: 0x1e293b,
+    grassColor: 0x3b82f6,
+    pipes: [
+      { x: 420, height: 46 },
+      { x: 1050, height: 60 },
+      { x: 1750, height: 52 },
+      { x: 2450, height: 64 }
+    ],
+    blocks: [
+      { x: 280, y: 440, type: 'question', hasCoin: true },
+      { x: 312, y: 440, type: 'brick' },
+      { x: 344, y: 440, type: 'question', hasCoin: true },
+      { x: 690, y: 410, type: 'brick' },
+      { x: 722, y: 410, type: 'question', hasCoin: true },
+      { x: 754, y: 410, type: 'brick' },
+      // High starry line
+      { x: 1250, y: 430, type: 'brick' },
+      { x: 1290, y: 365, type: 'question', hasCoin: true },
+      { x: 1322, y: 365, type: 'brick' },
+      { x: 1354, y: 365, type: 'question', hasCoin: true },
+      // Castle steps
+      { x: 2600, y: 520, type: 'brick' },
+      { x: 2632, y: 520, type: 'brick' },
+      { x: 2632, y: 488, type: 'brick' },
+      { x: 2664, y: 520, type: 'brick' },
+      { x: 2664, y: 488, type: 'brick' },
+      { x: 2664, y: 456, type: 'brick' }
+    ],
+    spikes: [
+      { x: 720, y: 568, width: 64 },
+      { x: 1380, y: 568, width: 80 },
+      { x: 2050, y: 568, width: 80 }
+    ],
+    enemies: [
+      { x: 400, y: 530, patrol: 70 },
+      { x: 860, y: 530, patrol: 80 },
+      { x: 1200, y: 530, patrol: 90 },
+      { x: 1600, y: 530, patrol: 80 },
+      { x: 2150, y: 530, patrol: 100 },
+      { x: 2750, y: 530, patrol: 90 }
+    ],
+    coins: [
+      { x: 280, y: 395 }, { x: 344, y: 395 }, { x: 420, y: 455 },
+      { x: 722, y: 365 }, { x: 1050, y: 440 }, { x: 1290, y: 320 },
+      { x: 1354, y: 320 }, { x: 1750, y: 450 }, { x: 2000, y: 520 },
+      { x: 2450, y: 435 }, { x: 2664, y: 410 }, { x: 2900, y: 520 }
+    ],
     goalX: 3300
   }
 ];
+
+// --- MENU SCENE DENGAN PILIHAN WAKTU LEVEL (PAGI, PETANG, MALAM) ---
+class MenuScene extends Phaser.Scene {
+  private mainContainer!: Phaser.GameObjects.Container;
+  private levelSelectContainer!: Phaser.GameObjects.Container;
+  private audioMgr!: AudioManager;
+
+  constructor() {
+    super({ key: 'MenuScene' });
+  }
+
+  preload() {
+    this.load.audio('bgm', 'assets/audio/bgm.mp3');
+    this.load.audio('jump', 'assets/audio/jump.wav');
+    this.load.audio('coin', 'assets/audio/coin.wav');
+    this.load.audio('hurt', 'assets/audio/hurt.wav');
+    this.load.audio('gameover', 'assets/audio/gameover.wav');
+    this.load.spritesheet('hero_sprite', 'assets/sprites/hero.png', {
+      frameWidth: 32,
+      frameHeight: 48
+    });
+  }
+
+  create() {
+    this.audioMgr = new AudioManager(this);
+
+    // Sembunyikan tombol touch controls saat di layar menu
+    const tc = document.getElementById('touch-controls');
+    if (tc) tc.style.display = 'none';
+
+    // 1. Scenic Parallax Menu Background
+    const bg = this.add.graphics();
+    bg.fillGradientStyle(0x0a0f1d, 0x0a0f1d, 0x1e1b4b, 0x1e1b4b, 1);
+    bg.fillRect(0, 0, 1066, 600);
+
+    // Decorative Stars
+    const stars = this.add.graphics();
+    stars.fillStyle(0xffffff, 0.7);
+    for (let i = 0; i < 70; i++) {
+      const sx = Phaser.Math.Between(20, 1046);
+      const sy = Phaser.Math.Between(15, 340);
+      stars.fillCircle(sx, sy, Phaser.Math.Between(1, 2));
+    }
+
+    // Glowing Moon in top corner
+    const moon = this.add.graphics();
+    moon.fillStyle(0xfde047, 0.2);
+    moon.fillCircle(960, 90, 42);
+    moon.fillStyle(0xfef9c3, 0.95);
+    moon.fillCircle(960, 90, 28);
+    moon.fillStyle(0x0a0f1d, 1);
+    moon.fillCircle(970, 84, 25);
+
+    // Gentle floating clouds
+    const cloudsGfx = this.add.graphics();
+    cloudsGfx.fillStyle(0xffffff, 0.12);
+    cloudsGfx.fillRoundedRect(80, 120, 180, 28, 14);
+    cloudsGfx.fillRoundedRect(480, 90, 220, 32, 16);
+    cloudsGfx.fillRoundedRect(760, 160, 170, 26, 13);
+
+    // Rolling Hills Silhouette at bottom
+    const hills = this.add.graphics();
+    hills.fillStyle(0x0f172a, 0.95);
+    hills.beginPath();
+    hills.arc(180, 600, 240, Math.PI, 0, false);
+    hills.arc(580, 600, 320, Math.PI, 0, false);
+    hills.arc(960, 600, 260, Math.PI, 0, false);
+    hills.fillPath();
+
+    // 2. Create Both Views (Main Menu & Level Select)
+    this.createMainMenuView();
+    this.createLevelSelectView();
+
+    // Default: Show Main Menu, Hide Level Select
+    this.mainContainer.setVisible(true);
+    this.levelSelectContainer.setVisible(false);
+
+    // Keyboard shortcuts: Space/Enter = Start, L = Pilih Level
+    this.input.keyboard?.on('keydown-SPACE', () => {
+      if (this.mainContainer.visible) this.startGame(0);
+    });
+    this.input.keyboard?.on('keydown-ENTER', () => {
+      if (this.mainContainer.visible) this.startGame(0);
+    });
+    this.input.keyboard?.on('keydown-ONE', () => this.startGame(0));
+    this.input.keyboard?.on('keydown-TWO', () => this.startGame(1));
+    this.input.keyboard?.on('keydown-THREE', () => this.startGame(2));
+  }
+
+  private createMainMenuView(): void {
+    this.mainContainer = this.add.container(0, 0);
+
+    // Title Badge
+    const titleGlow = this.add.text(533, 145, 'SUPER PIXEL QUEST', {
+      fontSize: '44px',
+      color: '#38bdf8',
+      fontStyle: 'bold',
+      fontFamily: 'monospace'
+    }).setOrigin(0.5);
+
+    // Gentle Bobbing Animation
+    this.tweens.add({
+      targets: titleGlow,
+      y: 138,
+      duration: 1600,
+      yoyo: true,
+      repeat: -1,
+      ease: 'Sine.easeInOut'
+    });
+
+    const subTitle = this.add.text(533, 195, '✦ PETUALANGAN 3 WAKTU: PAGI • PETANG • MALAM ✦', {
+      fontSize: '15px',
+      color: '#facc15',
+      fontStyle: 'bold',
+      fontFamily: 'monospace'
+    }).setOrigin(0.5);
+
+    // High score banner
+    const bannerBox = this.add.graphics();
+    bannerBox.fillStyle(0x0f172a, 0.8);
+    bannerBox.fillRoundedRect(353, 230, 360, 36, 8);
+    bannerBox.lineStyle(1.5, 0x334155, 0.9);
+    bannerBox.strokeRoundedRect(353, 230, 360, 36, 8);
+
+    const bannerText = this.add.text(533, 248, '🎮 3 LEVEL DENGAN TEMA WAKTU & RINTANGAN UNIK', {
+      fontSize: '12px',
+      color: '#94a3b8',
+      fontFamily: 'monospace'
+    }).setOrigin(0.5);
+
+    // START GAME Button (Large green highlight)
+    const btnStart = this.createMenuButton(533, 320, '▶ START GAME (PAGI)', 0x22c55e, 0x16a34a, () => {
+      this.startGame(0);
+    });
+
+    // PILIH LEVEL Button (Blue highlight)
+    const btnSelect = this.createMenuButton(533, 395, '🗺️ PILIH LEVEL (PAGI / PETANG / MALAM)', 0x0284c7, 0x0369a1, () => {
+      this.audioMgr.play('coin', { volume: 0.5 });
+      this.mainContainer.setVisible(false);
+      this.levelSelectContainer.setVisible(true);
+    });
+
+    // FULLSCREEN Button
+    const btnFs = this.createMenuButton(533, 465, '⛶ LAYAR PENUH (F)', 0x475569, 0x334155, () => {
+      toggleGameFullscreen();
+    }, 280, 44);
+
+    // Hint text
+    const hint = this.add.text(533, 545, 'Kontrol: A/D/Panah = Jalan • W/Space = Lompat • Klik/Sentuh Layar = Gerak', {
+      fontSize: '13px',
+      color: '#64748b',
+      fontFamily: 'monospace'
+    }).setOrigin(0.5);
+
+    this.mainContainer.add([titleGlow, subTitle, bannerBox, bannerText, btnStart, btnSelect, btnFs, hint]);
+  }
+
+  private createLevelSelectView(): void {
+    this.levelSelectContainer = this.add.container(0, 0);
+
+    // Header
+    const title = this.add.text(533, 75, 'PILIH WAKTU & LEVEL', {
+      fontSize: '32px',
+      color: '#38bdf8',
+      fontStyle: 'bold',
+      fontFamily: 'monospace'
+    }).setOrigin(0.5);
+
+    const subtitle = this.add.text(533, 115, 'Pilih waktu petualangan yang ingin kamu jelajahi:', {
+      fontSize: '14px',
+      color: '#94a3b8',
+      fontFamily: 'monospace'
+    }).setOrigin(0.5);
+
+    // 3 Level Cards (Pagi, Petang, Malam)
+    const cards = [
+      {
+        lvlIndex: 0,
+        x: 215,
+        time: 'PAGI',
+        icon: '☀️',
+        title: 'BUKIT HIJAU',
+        desc: 'Matahari pagi cerah\ndan bukit hijau segar',
+        accentColor: 0x38bdf8,
+        bgColor: 0x075985,
+        btnColor: 0x0284c7
+      },
+      {
+        lvlIndex: 1,
+        x: 533,
+        time: 'PETANG',
+        icon: '🌇',
+        title: 'LEMBAH SENJA',
+        desc: 'Langit jingga tembaga\n& matahari terbenam',
+        accentColor: 0xf97316,
+        bgColor: 0x9a3412,
+        btnColor: 0xea580c
+      },
+      {
+        lvlIndex: 2,
+        x: 851,
+        time: 'MALAM',
+        icon: '🌙',
+        title: 'PUNCAK BINTANG',
+        desc: 'Malam tenang bertabur\nbintang & bulan perak',
+        accentColor: 0x818cf8,
+        bgColor: 0x312e81,
+        btnColor: 0x4f46e5
+      }
+    ];
+
+    const cardObjects: Phaser.GameObjects.GameObject[] = [];
+
+    cards.forEach((c) => {
+      const card = this.add.container(c.x, 290);
+
+      // Card Background Box
+      const box = this.add.graphics();
+      box.fillStyle(0x0f172a, 0.92);
+      box.fillRoundedRect(-140, -140, 280, 280, 14);
+      box.lineStyle(2, c.accentColor, 0.8);
+      box.strokeRoundedRect(-140, -140, 280, 280, 14);
+      card.add(box);
+
+      // Time Icon + Badge
+      const timeBadge = this.add.text(0, -95, `${c.icon} ${c.time}`, {
+        fontSize: '20px',
+        color: '#ffffff',
+        fontStyle: 'bold',
+        fontFamily: 'monospace'
+      }).setOrigin(0.5);
+      card.add(timeBadge);
+
+      // Level Title
+      const lvlTitle = this.add.text(0, -55, c.title, {
+        fontSize: '17px',
+        color: '#facc15',
+        fontStyle: 'bold',
+        fontFamily: 'monospace'
+      }).setOrigin(0.5);
+      card.add(lvlTitle);
+
+      // Description
+      const desc = this.add.text(0, 0, c.desc, {
+        fontSize: '13px',
+        color: '#94a3b8',
+        align: 'center',
+        fontFamily: 'monospace',
+        lineSpacing: 4
+      }).setOrigin(0.5);
+      card.add(desc);
+
+      // "MAIN SEKARANG" Button
+      const btn = this.createMenuButton(0, 85, `MAINKAN ${c.time}`, c.btnColor, c.bgColor, () => {
+        this.startGame(c.lvlIndex);
+      }, 220, 44);
+      card.add(btn);
+
+      cardObjects.push(card);
+    });
+
+    // BACK TO MAIN MENU Button
+    const btnBack = this.createMenuButton(533, 495, '◀ KEMBALI KE MENU UTAMA', 0x334155, 0x1e293b, () => {
+      this.audioMgr.play('coin', { volume: 0.4 });
+      this.levelSelectContainer.setVisible(false);
+      this.mainContainer.setVisible(true);
+    }, 340, 44);
+
+    this.levelSelectContainer.add([title, subtitle, ...cardObjects, btnBack]);
+  }
+
+  private createMenuButton(
+    x: number,
+    y: number,
+    label: string,
+    colorTop: number,
+    colorBottom: number,
+    callback: () => void,
+    width: number = 380,
+    height: number = 52
+  ): Phaser.GameObjects.Container {
+    const btn = this.add.container(x, y);
+
+    const bg = this.add.graphics();
+    const halfW = width / 2;
+    const halfH = height / 2;
+
+    const drawBg = (hover: boolean) => {
+      bg.clear();
+      bg.fillStyle(hover ? colorTop : colorBottom, 0.95);
+      bg.fillRoundedRect(-halfW, -halfH, width, height, 10);
+      bg.lineStyle(2, hover ? 0xffffff : colorTop, 1);
+      bg.strokeRoundedRect(-halfW, -halfH, width, height, 10);
+    };
+
+    drawBg(false);
+    btn.add(bg);
+
+    const txt = this.add.text(0, 0, label, {
+      fontSize: '15px',
+      color: '#ffffff',
+      fontStyle: 'bold',
+      fontFamily: 'monospace'
+    }).setOrigin(0.5);
+    btn.add(txt);
+
+    // Interactive hitbox
+    btn.setSize(width, height);
+    btn.setInteractive({ useHandCursor: true });
+
+    btn.on('pointerover', () => {
+      drawBg(true);
+      btn.setScale(1.03);
+    });
+    btn.on('pointerout', () => {
+      drawBg(false);
+      btn.setScale(1);
+    });
+    btn.on('pointerdown', () => {
+      btn.setScale(0.97);
+      callback();
+    });
+    btn.on('pointerup', () => {
+      btn.setScale(1.03);
+    });
+
+    return btn;
+  }
+
+  private startGame(levelIndex: number): void {
+    this.audioMgr.play('coin', { volume: 0.7 });
+    // Unlock Audio Context
+    const ctx = (this.sound as any)?.context;
+    if (ctx && ctx.state === 'suspended') {
+      ctx.resume().catch(() => {});
+    }
+    this.scene.start('GameScene', { levelIndex });
+  }
+}
 
 // --- MAIN GAME SCENE ---
 class GameScene extends Phaser.Scene {
@@ -326,6 +736,12 @@ class GameScene extends Phaser.Scene {
 
   constructor() {
     super({ key: 'GameScene' });
+  }
+
+  init(data?: { levelIndex?: number }): void {
+    if (data && typeof data.levelIndex === 'number') {
+      this.currentLevelIndex = data.levelIndex;
+    }
   }
 
   preload() {
@@ -486,6 +902,10 @@ class GameScene extends Phaser.Scene {
     this.isDying = false;
     this.isInvulnerable = false;
 
+    // Pastikan tombol touch controls ditampilkan saat masuk ke GameScene
+    const tc = document.getElementById('touch-controls');
+    if (tc) tc.style.display = 'flex';
+
     this.audioMgr = new AudioManager(this);
     this.audioMgr.play('bgm', { loop: true, volume: 0.4 });
 
@@ -494,7 +914,7 @@ class GameScene extends Phaser.Scene {
     // Set World Physics Bounds
     this.physics.world.setBounds(0, 0, lvl.worldWidth, 600);
 
-    // 1. Dynamic Parallax Background
+    // 1. Dynamic Parallax Background with Day/Sunset/Night Theme
     this.createScenicBackground(lvl);
 
     // 2. Physics Groups
@@ -578,14 +998,50 @@ class GameScene extends Phaser.Scene {
   }
 
   private createScenicBackground(lvl: LevelConfig): void {
-    // Sky Gradient (Widescreen 16:9 width 1066)
+    // 1. Sky Gradient (Widescreen 16:9 width 1066)
     const skyGfx = this.add.graphics().setScrollFactor(0);
     skyGfx.fillGradientStyle(lvl.skyColorTop, lvl.skyColorTop, lvl.skyColorBottom, lvl.skyColorBottom, 1);
     skyGfx.fillRect(0, 0, 1066, 600);
 
-    // Distant Mountains / Pyramids (ScrollFactor 0.1)
+    // 2. Celestial Body & Ambient Sky Objects based on Time of Day
+    const skyObject = this.add.graphics().setScrollFactor(0.04);
+    if (lvl.timeOfDay === 'pagi') {
+      // ☀️ Matahari Pagi cerah & hangat
+      skyObject.fillStyle(0xfde047, 0.28);
+      skyObject.fillCircle(190, 120, 52); // Sun corona
+      skyObject.fillStyle(0xfef08a, 0.95);
+      skyObject.fillCircle(190, 120, 34); // Golden sun core
+    } else if (lvl.timeOfDay === 'petang') {
+      // 🌇 Matahari Senja terbenam kemerahan
+      skyObject.fillStyle(0xf43f5e, 0.35);
+      skyObject.fillCircle(380, 280, 68); // Sunset flare
+      skyObject.fillStyle(0xfb923c, 0.92);
+      skyObject.fillCircle(380, 280, 44); // Sunset sun core
+    } else if (lvl.timeOfDay === 'malam') {
+      // 🌙 Bulan Sabit bercahaya & 80+ Bintang Berkelap-kelip
+      skyObject.fillStyle(0x38bdf8, 0.25);
+      skyObject.fillCircle(240, 110, 42); // Moonlight glow
+      skyObject.fillStyle(0xfef9c3, 1);
+      skyObject.fillCircle(240, 110, 28);
+      // Cutout to make crescent shape
+      skyObject.fillStyle(lvl.skyColorTop, 1);
+      skyObject.fillCircle(252, 104, 25);
+
+      // Starry sky
+      const starsGfx = this.add.graphics().setScrollFactor(0.02);
+      starsGfx.fillStyle(0xffffff, 0.85);
+      for (let s = 0; s < 80; s++) {
+        const sx = (s * 53) % 1066;
+        const sy = (s * 37) % 270;
+        const r = (s % 4 === 0) ? 2 : 1.2;
+        starsGfx.fillCircle(sx, sy, r);
+      }
+    }
+
+    // 3. Distant Mountains / Pyramids (ScrollFactor 0.1)
     const mountains = this.add.graphics().setScrollFactor(0.1);
-    mountains.fillStyle(0x3b82f6, 0.4);
+    const mountainColor = lvl.timeOfDay === 'malam' ? 0x0f172a : (lvl.timeOfDay === 'petang' ? 0x581c87 : 0x3b82f6);
+    mountains.fillStyle(mountainColor, 0.45);
     for (let x = 0; x < lvl.worldWidth * 0.5; x += 360) {
       mountains.beginPath();
       mountains.moveTo(x, 560);
@@ -595,23 +1051,26 @@ class GameScene extends Phaser.Scene {
       mountains.fillPath();
     }
 
-    // Lush Rolling Hills (ScrollFactor 0.3)
+    // 4. Rolling Hills (ScrollFactor 0.3)
     const hills = this.add.graphics().setScrollFactor(0.3);
-    hills.fillStyle(lvl.hillsColor, 0.85);
+    hills.fillStyle(lvl.hillsColor, 0.9);
     for (let x = -50; x < lvl.worldWidth * 0.7; x += 260) {
       hills.beginPath();
       hills.arc(x + 130, 560, 160, Math.PI, 0, false);
       hills.fillPath();
     }
 
-    // Fluffy Drifting Clouds (ScrollFactor 0.2)
+    // 5. Drifting Clouds (ScrollFactor 0.2)
     this.clouds = [];
+    const cloudColor = lvl.timeOfDay === 'malam' ? 0x334155 : (lvl.timeOfDay === 'petang' ? 0xfecdd3 : 0xffffff);
+    const cloudAlpha = lvl.timeOfDay === 'malam' ? 0.35 : (lvl.timeOfDay === 'petang' ? 0.75 : 0.88);
+
     for (let i = 0; i < 15; i++) {
       const cx = Phaser.Math.Between(0, lvl.worldWidth);
       const cy = Phaser.Math.Between(40, 220);
       const cloudGfx = this.add.graphics();
       cloudGfx.setScrollFactor(0.2);
-      cloudGfx.fillStyle(0xffffff, 0.85);
+      cloudGfx.fillStyle(cloudColor, cloudAlpha);
       cloudGfx.fillCircle(cx, cy, 26);
       cloudGfx.fillCircle(cx + 24, cy - 8, 20);
       cloudGfx.fillCircle(cx + 46, cy, 24);
@@ -619,9 +1078,10 @@ class GameScene extends Phaser.Scene {
       this.clouds.push(cloudGfx);
     }
 
-    // Foreground Bushes (ScrollFactor 1.0)
+    // 6. Foreground Bushes (ScrollFactor 1.0)
     const bushes = this.add.graphics();
-    bushes.fillStyle(0x15803d, 1);
+    const bushColor = lvl.timeOfDay === 'malam' ? 0x1e293b : (lvl.timeOfDay === 'petang' ? 0x713f12 : 0x15803d);
+    bushes.fillStyle(bushColor, 1);
     for (let x = 120; x < lvl.worldWidth - 300; x += 420) {
       bushes.fillCircle(x, 560, 24);
       bushes.fillCircle(x + 28, 552, 28);
@@ -985,18 +1445,27 @@ class GameScene extends Phaser.Scene {
     this.player.setVelocityX(120);
     this.audioMgr.play('coin', { volume: 1 });
 
-    const victoryBanner = this.add.text(533, 240, 'STAGE CLEAR!', {
-      fontSize: '32px',
+    const isAllCleared = this.currentLevelIndex >= LEVELS.length - 1;
+    const bannerMsg = isAllCleared
+      ? '🎉 SEMUA LEVEL SELESAI! 🎉\nPAGI, PETANG & MALAM TELAH DITAKLUKKAN!'
+      : `STAGE CLEAR!\nLANJUT KE LEVEL BERIKUTNYA...`;
+
+    const victoryBanner = this.add.text(533, 240, bannerMsg, {
+      fontSize: isAllCleared ? '24px' : '30px',
       color: '#22c55e',
       fontStyle: 'bold',
+      align: 'center',
       fontFamily: 'monospace'
     }).setOrigin(0.5).setScrollFactor(0);
 
-    this.time.delayedCall(2200, () => {
+    this.time.delayedCall(isAllCleared ? 3400 : 2200, () => {
       victoryBanner.destroy();
-      // Next level or loop
-      this.currentLevelIndex = (this.currentLevelIndex + 1) % LEVELS.length;
-      this.scene.restart();
+      if (isAllCleared) {
+        this.scene.start('MenuScene');
+      } else {
+        this.currentLevelIndex = (this.currentLevelIndex + 1) % LEVELS.length;
+        this.scene.restart();
+      }
     });
   }
 
@@ -1149,8 +1618,21 @@ class GameScene extends Phaser.Scene {
     // Hearts (Lives)
     this.drawHearts();
 
+    // Menu Button in HUD
+    const menuBtn = this.add.text(962, 34, '🏠 MENU', {
+      fontSize: '13px',
+      color: '#38bdf8',
+      fontStyle: 'bold',
+      fontFamily: 'monospace'
+    }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+    menuBtn.on('pointerdown', () => {
+      this.audioMgr.play('coin', { volume: 0.5 });
+      this.scene.start('MenuScene');
+    });
+    this.hudContainer.add(menuBtn);
+
     // Fullscreen Button in HUD
-    const fsBtn = this.add.text(1022, 34, '⛶', {
+    const fsBtn = this.add.text(1026, 34, '⛶', {
       fontSize: '20px',
       color: '#38bdf8'
     }).setOrigin(0.5).setInteractive({ useHandCursor: true });
@@ -1200,7 +1682,7 @@ const game = new Phaser.Game({
       debug: false
     }
   },
-  scene: [GameScene]
+  scene: [MenuScene, GameScene]
 });
 (game as any).events.off('blur');
 (game as any).events.off('hidden');
