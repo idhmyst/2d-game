@@ -1619,7 +1619,7 @@ class GameScene extends Phaser.Scene {
     this.drawHearts();
 
     // Menu Button in HUD
-    const menuBtn = this.add.text(962, 34, '🏠 MENU', {
+    const menuBtn = this.add.text(980, 34, '🏠 MENU', {
       fontSize: '13px',
       color: '#38bdf8',
       fontStyle: 'bold',
@@ -1630,16 +1630,6 @@ class GameScene extends Phaser.Scene {
       this.scene.start('MenuScene');
     });
     this.hudContainer.add(menuBtn);
-
-    // Fullscreen Button in HUD
-    const fsBtn = this.add.text(1026, 34, '⛶', {
-      fontSize: '20px',
-      color: '#38bdf8'
-    }).setOrigin(0.5).setInteractive({ useHandCursor: true });
-    fsBtn.on('pointerdown', () => {
-      toggleGameFullscreen();
-    });
-    this.hudContainer.add(fsBtn);
   }
 
   private drawHearts(): void {
